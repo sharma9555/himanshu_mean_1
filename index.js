@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -10,7 +12,7 @@ const authentication = require('./routes/authentication')(router);
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, (err)=>{
 	if(err){
-		console.log("databse not connected");
+		console.log("database not connected");
 	}
 	else{
 		//console.log(config.secret);

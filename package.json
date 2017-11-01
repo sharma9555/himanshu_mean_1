@@ -9,6 +9,7 @@
   "author": "himanshu sharma",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "express": "^4.16.2",
     "mongoose": "^4.12.5"
   }

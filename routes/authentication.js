@@ -1,4 +1,4 @@
-const Users = require('../model/user');
+const User = require('../model/user');
 const config = require('../config/database');
 
 module.exports = (router) =>{
@@ -15,21 +15,27 @@ module.exports = (router) =>{
 					res.json({success: false, message: "You must pro a password"});
 				}
 				else{
-					let user = new Users({
+					let user = new User({
 						email: req.body.email.toLowerCase(),
 						username: req.body.username.toLowerCase(),
 						password: req.body.password
 					});
 					user.save((err) =>{
 						if(err){
-							res.json({success: false, message:"User cannot be save"});
+							if(err.code === 1100){
+								res.json({success: false, message:"UserName or E-mail already exist !"});
+							}
+							else{
+							//console.log(err);
+							res.json({success: false, message:"User cannot be save"});	
+							}
 						}
 						else{
 							res.json({success: true, message:"User saved"});
 						}
 					});
-					//res.send("hello world");
-					//console.log(res);		
+					/*res.send("hello world");
+					console.log(res);*/		
 				}
 			}				
 		}		
